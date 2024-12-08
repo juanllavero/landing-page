@@ -59,12 +59,39 @@ a {
 	background-color: transparent;
 	cursor: pointer;
 
+	transition: all .15s ease;
+
 	& svg {
 		width: 2em;
 		height: 2em;
 
 		& path {
 			fill: white;
+		}
+	}
+}
+
+.discord-btn {
+	
+	&:hover {
+		transform: rotateZ(-10deg);
+		& svg {
+			& path {
+				fill: #7289da;
+			}
+		}
+	}
+}
+
+.yt-btn {
+	
+	&:hover {
+		transform: rotateZ(10deg);
+		& svg {
+
+			& path {
+				fill: #ff0000;
+			}
 		}
 	}
 }
@@ -86,6 +113,7 @@ header {
 
 	& ul {
 		display: flex;
+		justify-content: center;
 		flex-flow: row nowrap;
 		gap: 3em;
 
@@ -93,9 +121,13 @@ header {
 	}
 
 	& img {
-		width: 4em;
+		width: 4rem;
 		cursor: pointer;
 		filter: drop-shadow(3px 3px 5px #0101017a);
+	}
+
+	& .link-btns {
+		width: 6rem;
 	}
 }
 
@@ -150,7 +182,7 @@ header.scrolled {
 		justify-content: center;
 		align-items: center;
 		text-align: center;
-		min-height: 60dvh;
+		min-height: 70dvh;
 		z-index: 1;
 
 		padding: 5em 10em;
@@ -275,12 +307,13 @@ header.scrolled {
 	scroll-margin-top: 4rem;
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 
-	padding: 5em 10em;
+	padding: 5em;
+	max-width: 1500px;
 
-	gap: 20em;
+	gap: 2em;
 	color: var(--dark-color);
 
 	& .title {
@@ -298,7 +331,7 @@ header.scrolled {
 		grid-template-columns: 1fr 1fr;
 		justify-content: center;
 
-		max-width: 1000px;
+		width: 100%;
 
 		gap: 0.8rem;
 
@@ -358,76 +391,12 @@ header.scrolled {
 	}
 }
 
-.contact-section {
-	scroll-margin-top: 4rem;
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-items: center;
-
-	gap: 2em;
-
-	padding: 5em 10em;
-	background-color: #6d8090;
-
-	& .title {
-		font-size: 2.6rem;
-		font-weight: bold;
-	}
-
-	& form {
-		display: flex;
-		flex-flow: column nowrap;
-		justify-content: center;
-		align-items: center;
-		text-align: left;
-
-		width: 50%;
-		max-width: 1000px;
-
-		gap: 1em;
-
-		& .form-group {
-			display: flex;
-			width: 95%;
-			flex-flow: column nowrap;
-			gap: .5rem;
-			margin-bottom: 15px;
-
-			& input,
-			textarea {
-				font-size: medium;
-				padding: 0.8em 1em;
-				border-radius: 5px;
-				border: none;
-				width: 100%;
-
-				resize: vertical;
-			}
-		}
-
-		& .error-message {
-			color: red;
-			font-size: 14px;
-			margin-top: 5px;
-			display: block;
-			height: 18px;
-		}
-
-		& .form-status {
-			margin-top: 20px;
-			font-size: 16px;
-			color: green;
-		}
-	}
-}
-
 footer {
 	position: relative;
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: center;
 	background-color: black;
 	color: white;
 	padding: 2em 4em;
@@ -450,17 +419,20 @@ footer {
 	& .footer-section {
 		display: flex;
 		flex-flow: row nowrap;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
 		text-align: left;
-		gap: 2em;
 
 		width: 1500px;
+
+		& .copyright {
+			width: fit-content;
+		}
 
 		& .btns-section {
 			display: flex;
 			flex-flow: row nowrap;
-			width: 100%;
+			width: fit-content;
 
 			& img {
 				width: 4em;
@@ -535,6 +507,24 @@ footer {
 	}
 }
 
+@media (max-width: 1200px) {
+	.welcome-section {
+		& .welcome-content {
+			padding: 10rem 4rem;
+		}
+	}
+
+	.clients-section {
+		flex-flow: column nowrap;
+		& .clients-list {
+			display: flex;
+			flex-flow: row wrap;
+
+			width: 100%;
+		}
+	}
+}
+
 @media (max-width: 600px) {
 	.svg-btn {
 		& svg {
@@ -598,7 +588,7 @@ footer {
 	}
 
 	.features-section {
-		padding: 3em 1em;
+		padding: 10em 1em;
 
 		& .section-title {
 			font-size: 2.2rem;
@@ -612,7 +602,7 @@ footer {
 	}
 
 	.clients-section {
-		padding: 3em 1em;
+		padding: 2em 1em;
 
 		& .title {
 			font-size: 2.2rem;
@@ -621,37 +611,46 @@ footer {
 		& .clients-list {
 			display: flex;
 			flex-flow: column nowrap;
-
+			
 			& img {
-				max-height: 1.8rem;
+				width: auto;
+				max-height: 3rem;
 			}
 		}
 	}
 
-	.contact-section {
-		padding: 3em 0;
-
-		& .title {
-			font-size: 2.2rem;
-		}
-	}
-
 	footer {
-		flex-flow: column nowrap;
 		padding: 3em 2em;
-		gap: 2em;
 
 		& .footer-section {
+			justify-content: center;
+			
 			& .btns-section {
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
+				
 				& img {
-					width: 5em;
+					width: 3em;
+					height: auto;
 				}
 
 				& .link-btns {
 					display: flex;
 					width: 100%;
-					justify-content: space-evenly;
+					justify-content: end;
+
+					gap: 2rem;
+
+					& svg {
+						width: 2em;
+						height: 2em;
+					}
 				}
+			}
+
+			& .copyright {
+				display: none;
 			}
 		}
 	}
